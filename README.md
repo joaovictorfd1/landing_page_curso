@@ -13,6 +13,7 @@ As técnicas e tecnologias utilizadas foram:
 - Yup (Validação de formulário)
 - Formik (Formulário)
 - React Toastify (Alerta para envio do formulário)
+- Vercell (Hospedagem)
 
 ## 📁 Acesso ao projeto
 
@@ -32,3 +33,7 @@ $ cd landing_page_curso
 `npm start`
 
 Agora você pode abrir [http://localhost:3000](http://localhost:3000) no seu navegador e verificar a landing page criada.
+
+### 4. Link Vercel
+
+https://landing-page-curso-nu.vercel.app/
