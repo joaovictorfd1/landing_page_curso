@@ -2,8 +2,6 @@
 
 Projeto tem como criação uma landing page para divulgação do curso de Engenharia da Computação
 
-![](img/amostra.gif)
-
 ## ✔️ Técnicas e Tecnologias utilizadas
 
 As técnicas e tecnologias utilizadas foram:
@@ -29,7 +27,7 @@ $ cd landing_page_curso
 
 `npm install` 
 
-### 3. Run the app
+### 3. Abrir a aplicação
 
 `npm start`
 
