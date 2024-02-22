@@ -12,6 +12,9 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { useFormik } from "formik";
+import ReactInputMask from "react-input-mask";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 interface ICardsProps {
   icone: React.ReactElement,
@@ -64,6 +67,7 @@ const AccordionInformations: ICardsProps[] = [
 ]
 
 const Page = () => {
+  const telefoneRegex = /^\(\d{2}\)\d{5}-\d{4}$/;
 
   const initialValues: IRegisterProps = {
     nome: '',
@@ -76,13 +80,22 @@ const Page = () => {
   const validationFeedback = Yup.object({
     nome: Yup.string().required(),
     sobrenome: Yup.string().required(),
-    email: Yup.string().required(),
-    telefone_celular: Yup.string().required(),
+    email: Yup.string().email().required(),
+    telefone_celular: Yup.string().matches(telefoneRegex).required(),
     horario: Yup.string().required(),
   });
 
   const onSubmit = (body: IRegisterProps) => {
-    console.log(body)
+    toast.success(`${body.nome} sua inscrição foi realizada com sucesso`, {
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    })
   }
 
 
@@ -95,6 +108,7 @@ const Page = () => {
 
   return (
     <Box mb={'16px'}>
+      <ToastContainer />
       <Box component={'div'} display={'flex'} width={'100%'} minHeight={'200px'}>
         <img src={imagemProgramacao} alt="imagem_programador" width={'100%'} height={'auto'} />
       </Box>
@@ -125,7 +139,7 @@ const Page = () => {
             Por que escolher Engenharia da Computação conosco?
           </Typography>
           {AccordionInformations.map((item, index) => (
-            <Accordion key={index}>
+            <Accordion key={index + 1} sx={{ width: '100%' }}>
               <AccordionSummary
                 expandIcon={<ExpandMoreIcon />}
                 aria-controls={`panel${index + 1}-content`}
@@ -147,66 +161,73 @@ const Page = () => {
             <Grid container spacing={2}>
               <Grid item xs={12} sm={12} md={12}>
                 <TextField
-                  required
                   autoComplete="given-name"
                   name="nome"
                   fullWidth
                   id="nome"
-                  label="Nome"
+                  label="Nome *"
                   autoFocus
                   value={formik.values.nome}
                   onChange={formik.handleChange}
+                  error={Boolean(formik.errors.nome)}
                 />
               </Grid>
               <Grid item xs={12} sm={12} md={12}>
                 <TextField
-                  required
                   fullWidth
                   id="sobrenome"
-                  label="Sobrenome"
+                  label="Sobrenome *"
                   name="sobrenome"
                   autoComplete="family-name"
                   value={formik.values.sobrenome}
                   onChange={formik.handleChange}
+                  error={Boolean(formik.errors.sobrenome)}
                 />
               </Grid>
               <Grid item xs={12} sm={12} md={12}>
                 <TextField
-                  required
                   type="email"
                   fullWidth
                   id="email"
-                  label="Email"
+                  label="Email *"
                   name="email"
                   autoComplete="email"
                   value={formik.values.email}
                   onChange={formik.handleChange}
+                  error={Boolean(formik.errors.email)}
                 />
               </Grid>
               <Grid item xs={12} sm={12} md={12}>
                 <TextField
-                  required
                   fullWidth
                   name="telefone_celular"
-                  label="Telefone Celular"
+                  label="Telefone Celular *"
                   id="telefone_celular"
                   autoComplete="cellphone"
                   value={formik.values.telefone_celular}
                   onChange={formik.handleChange}
+                  InputProps={{
+                    inputComponent: ReactInputMask as any,
+                    inputProps: {
+                      mask: "(99)99999-9999",
+                      maskChar: " ",
+                    },
+                  }}
+                  error={Boolean(formik.errors.telefone_celular)}
                 />
               </Grid>
               <Grid item xs={12} sm={12} md={12}>
                 <FormControl fullWidth>
                   <InputLabel id="-label">Horário *</InputLabel>
                   <Select
-                    required
                     fullWidth
                     labelId="-label"
                     id="horario"
                     name="horario"
-                    label="Horário"
+                    label="Horário *"
                     value={formik.values.horario}
                     onChange={formik.handleChange}
+                    error={Boolean(formik.errors.horario)}
                   >
                     <MenuItem value={'14as16'}>Das 14h às 18h</MenuItem>
                     <MenuItem value={'19as23'}>Das 19h às 23h</MenuItem>
