@@ -124,7 +124,9 @@ const Page = () => {
         component={'div'}
         display={'flex'}
         sx={{
-          maxHeight: { md: '500px' }
+          maxHeight: { md: '500px' },
+          height: { xl: 'auto' },
+          position: 'relative',
         }}
       >
         <img
@@ -135,12 +137,23 @@ const Page = () => {
             clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 88%)'
           }}
         />
+        <Box component={'span'} position={'absolute'} color={'white'} sx={{
+          top: { md: 370, xs: 190 },
+          bottom: { md: 0, xs: 0 },
+          left: { md: 115, xs: 5 },
+          right: { md: 0, xs: 0 },
+          fontSize: { md: '48px', xs: '18px' },
+          textTransform: 'uppercase',
+          fontWeight: 'bold'
+        }}>
+          Engenharia da Computação
+        </Box>
       </Box>
       <Box component={'div'} display={'flex'}>
         <Grid container spacing={2}>
           <Grid item md={8} sm={12}>
             <Box component={'div'} display={'flex'} justifyContent={'center'} m={'8px 0px'}>
-              <Typography variant="h4">
+              <Typography variant="h4" sx={{ fontSize: { xs: '24px', md: '32px' } }}>
                 Sobre o curso
               </Typography>
             </Box>
@@ -190,7 +203,7 @@ const Page = () => {
           </Grid>
           <Grid item md={4} sm={12} display={'flex'} alignItems={'center'}>
             <Container>
-              <Typography variant="h4" display={'flex'} justifyContent={'center'}>Formulário de Inscrição</Typography>
+              <Typography variant="h4" display={'flex'} justifyContent={'center'} sx={{ fontSize: { xs: '24px', md: '32px' } }}>Formulário de Inscrição</Typography>
               <Box component={'div'} sx={{ mt: 3 }}>
                 <Grid container spacing={2}>
                   <Grid item xs={12} sm={12} md={12}>
