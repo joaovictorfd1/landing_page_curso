@@ -120,13 +120,26 @@ const Page = () => {
   return (
     <Box mb={'16px'}>
       <ToastContainer />
-      <Box component={'div'} display={'flex'} width={'100%'} minHeight={'200px'}>
-        <img src={imagemProgramacao} alt="imagem_programador" width={'100%'} height={'auto'} />
+      <Box
+        component={'div'}
+        display={'flex'}
+        sx={{
+          maxHeight: { md: '500px' }
+        }}
+      >
+        <img
+          src={imagemProgramacao}
+          alt="imagem_programador"
+          width={'100%'}
+          style={{
+            clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 88%)'
+          }}
+        />
       </Box>
       <Box component={'div'} display={'flex'}>
         <Grid container spacing={2}>
           <Grid item md={8} sm={12}>
-            <Box component={'div'} display={'flex'} justifyContent={'center'} mt={'8px'}>
+            <Box component={'div'} display={'flex'} justifyContent={'center'} m={'8px 0px'}>
               <Typography variant="h4">
                 Sobre o curso
               </Typography>
@@ -134,7 +147,15 @@ const Page = () => {
             <Grid container>
               {cardsInformations.map((item, index) => (
                 <Grid item md={4} sm={12}>
-                  <Card sx={{ minWidth: '245px', backgroundColor: '#F7F9FF', margin: { xs: '16px 16px', md: '0px 16px' }, height: { md: '100%' } }} key={index}>
+                  <Card
+                    sx={{
+                      minWidth: '245px',
+                      backgroundColor: '#F7F9FF',
+                      margin: { xs: '16px 16px', md: '0px 16px' },
+                      height: { md: '100%' }
+                    }}
+                    key={index}
+                  >
                     <CardContent>
                       <Box component={'div'} display={'flex'} flexDirection={'column'} alignItems={'center'} gap={'8px'}>
                         <Box component={'div'} display={'flex'}>{item.icone}</Box>
@@ -253,7 +274,11 @@ const Page = () => {
                   onClick={() => formik.handleSubmit()}
                   fullWidth
                   variant="contained"
-                  sx={{ mt: 3, background: '#6813D2', borderRadius: '4px' }}
+                  sx={{
+                    mt: 3,
+                    background: '#6813D2',
+                    borderRadius: '4px'
+                  }}
                 >
                   Enviar
                 </Button>
